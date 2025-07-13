@@ -1,9 +1,10 @@
+
 # FastAPI and ASGI server
-fastapi==0.104.1
-uvicorn==0.24.0
+fastapi==0.100.1
+uvicorn==0.23.2
 
 # Database
-sqlalchemy==2.0.23
+sqlalchemy==1.4.48
 
 # Authentication and Security
 python-jose[cryptography]==3.3.0
@@ -11,8 +12,8 @@ passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
 
 # Validation and Serialization
-pydantic==2.5.0
-pydantic-settings==2.1.0
+pydantic==1.10.12
 
 # Environment Variables
 python-dotenv==1.0.0
+
