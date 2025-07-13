@@ -33,6 +33,14 @@ class Settings(BaseSettings):
     
     # Database
     DATABASE_URL: str = "sqlite:///./quick_commerce_medicine.db"
+
+    @property
+    def database_url(self) -> str:
+        """Get database URL, preferring environment variable"""
+        if hasattr(self, '_database_url_override'):
+            return self._database_url_override
+        return self.DATABASE_URL
+
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "password"
