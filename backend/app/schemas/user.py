@@ -38,7 +38,7 @@ class UserCreate(BaseModel):
     emergency_contact: Optional[EmergencyContact] = None
     delivery_addresses: Optional[List[DeliveryAddress]] = None
 
-    @field_validator('password')
+    @validator('password')
     @classmethod
     def validate_password(cls, v):
         if len(v) < 8:

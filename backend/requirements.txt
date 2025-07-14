@@ -1,7 +1,7 @@
 
 # Core FastAPI dependencies (Python 3.11 compatible)
-fastapi==0.100.1
-uvicorn==0.23.2
+fastapi==0.95.2
+uvicorn==0.22.0
 
 # Database
 sqlalchemy==1.4.48
