@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { FontScale, AccessibilitySettings, NotificationSettings } from '../types';
+import type { FontScale, AccessibilitySettings, NotificationSettings } from '../types';
 
 interface UIState {
   // Accessibility settings

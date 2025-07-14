@@ -111,8 +111,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             className={inputClasses}
             whileFocus={{ scale: 1.01 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            {...props}
+            transition={{ type: 'spring' as const, stiffness: 300, damping: 30 }}
+            {...(props as any)}
           />
           
           {rightIcon && (

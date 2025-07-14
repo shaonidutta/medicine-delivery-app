@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Cart, CartItem, AddToCartRequest } from '../types';
+import type { Cart, CartItem, AddToCartRequest } from '../types';
 import { cartApi } from '../services/api';
 
 interface CartState {
