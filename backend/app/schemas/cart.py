@@ -2,7 +2,7 @@
 Cart Pydantic schemas
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, validator
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 from decimal import Decimal
@@ -37,7 +37,7 @@ class CartItemResponse(CartItemBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class CartBase(BaseModel):
@@ -59,7 +59,7 @@ class CartResponse(CartBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class AddToCartRequest(BaseModel):
@@ -68,7 +68,7 @@ class AddToCartRequest(BaseModel):
     prescription_id: Optional[str] = Field(None, description="Prescription ID if medicine requires prescription")
     notes: Optional[str] = Field(None, max_length=500, description="Special instructions")
 
-    @field_validator('quantity')
+    @validator('quantity')
     @classmethod
     def validate_quantity(cls, v):
         if v <= 0:

@@ -2,7 +2,7 @@
 Prescription Pydantic schemas
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, validator
 from typing import Optional, List, Dict, Any
 from datetime import datetime, date
 from enum import Enum
@@ -29,18 +29,18 @@ class PrescriptionBase(BaseModel):
     valid_until: Optional[date] = None
     notes: Optional[str] = Field(None, max_length=1000)
 
-    @field_validator('prescription_date')
+    @validator('prescription_date')
     @classmethod
     def validate_prescription_date(cls, v):
         if v > date.today():
             raise ValueError('Prescription date cannot be in the future')
         return v
 
-    @field_validator('valid_until')
+    @validator('valid_until')
     @classmethod
-    def validate_valid_until(cls, v, info):
-        if v and 'prescription_date' in info.data:
-            if v <= info.data['prescription_date']:
+    def validate_valid_until(cls, v, values):
+        if v and 'prescription_date' in values:
+            if v <= values['prescription_date']:
                 raise ValueError('Valid until date must be after prescription date')
         return v
 
@@ -76,7 +76,7 @@ class PrescriptionResponse(PrescriptionBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class PrescriptionVerification(BaseModel):
@@ -91,7 +91,7 @@ class PrescriptionUpload(BaseModel):
     prescription_date: date = Field(...)
     notes: Optional[str] = Field(None, max_length=1000)
 
-    @field_validator('prescription_date')
+    @validator('prescription_date')
     @classmethod
     def validate_prescription_date(cls, v):
         if v > date.today():

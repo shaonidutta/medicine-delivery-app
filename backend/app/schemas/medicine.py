@@ -2,7 +2,7 @@
 Medicine Pydantic schemas
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, validator
 from typing import Optional, List, Dict, Any
 from datetime import datetime, date
 from decimal import Decimal
@@ -27,7 +27,7 @@ class MedicineBase(BaseModel):
     contraindications: Optional[List[str]] = None
     active_ingredients: Optional[Dict[str, Any]] = None
 
-    @field_validator('expiry_date')
+    @validator('expiry_date')
     @classmethod
     def validate_expiry_date(cls, v):
         if v and v <= date.today():
@@ -58,7 +58,7 @@ class MedicineUpdate(BaseModel):
     contraindications: Optional[List[str]] = None
     active_ingredients: Optional[Dict[str, Any]] = None
 
-    @field_validator('expiry_date')
+    @validator('expiry_date')
     @classmethod
     def validate_expiry_date(cls, v):
         if v and v <= date.today():
@@ -72,7 +72,7 @@ class MedicineResponse(MedicineBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class MedicineSearchQuery(BaseModel):

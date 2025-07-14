@@ -2,7 +2,7 @@
 Order Pydantic schemas
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, validator
 from typing import Optional, List, Dict, Any
 from datetime import datetime, date
 from enum import Enum
@@ -69,7 +69,7 @@ class OrderItemResponse(OrderItemBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class OrderBase(BaseModel):
@@ -113,7 +113,7 @@ class OrderResponse(OrderBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class OrderSearchQuery(BaseModel):
