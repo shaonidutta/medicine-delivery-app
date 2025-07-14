@@ -2,7 +2,7 @@
 Order and OrderItem models
 """
 
-from sqlalchemy import String, DateTime, func, ForeignKey, Numeric, Integer, Boolean, JSON
+from sqlalchemy import String, DateTime, func, ForeignKey, Numeric, Integer, Boolean, JSON, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 from typing import Optional, Dict, Any
@@ -23,6 +23,7 @@ class Order(Base):
     actual_delivery_time: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
     emergency_order: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     delivery_proof_url: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    cancellation_reason: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
