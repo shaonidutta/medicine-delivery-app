@@ -1,7 +1,10 @@
 
-# Core FastAPI dependencies (Python 3.11 STABLE - PURE PYTHON)
-fastapi==0.95.2
-uvicorn==0.22.0
+# Core FastAPI dependencies (Python 3.13 compatible - PURE PYTHON)
+fastapi==0.68.0
+uvicorn==0.15.0
+
+# Flask fallback for Python 3.13 compatibility
+flask==2.3.3
 
 # Database (Python 3.11 compatible)
 sqlalchemy==2.0.23
@@ -22,6 +25,6 @@ python-dotenv==1.0.0
 # Additional dependencies
 phonenumbers==8.13.27
 
-# Python 3.11 compatible typing
-typing-extensions==4.8.0
+# Python 3.13 compatible typing
+typing-extensions==4.5.0
 
