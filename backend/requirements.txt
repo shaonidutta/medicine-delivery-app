@@ -1,7 +1,7 @@
 
-# Core FastAPI dependencies (Python 3.11 compatible - STABLE)
-fastapi==0.104.1
-uvicorn==0.24.0
+# Core FastAPI dependencies (Python 3.11 STABLE - PURE PYTHON)
+fastapi==0.95.2
+uvicorn==0.22.0
 
 # Database (Python 3.11 compatible)
 sqlalchemy==2.0.23
@@ -12,10 +12,9 @@ PyJWT==2.8.0
 passlib==1.7.4
 python-multipart==0.0.6
 
-# Validation (Pydantic v2 - Python 3.11 stable)
-pydantic==2.5.0
-pydantic-settings==2.1.0
-email-validator==2.1.0.post1
+# Validation (Pydantic v1 - Pure Python, NO RUST)
+pydantic==1.10.12
+email-validator==1.3.1
 
 # Environment Variables
 python-dotenv==1.0.0
@@ -23,6 +22,6 @@ python-dotenv==1.0.0
 # Additional dependencies
 phonenumbers==8.13.27
 
-# Additional required packages for Python 3.11
+# Python 3.11 compatible typing
 typing-extensions==4.8.0
 

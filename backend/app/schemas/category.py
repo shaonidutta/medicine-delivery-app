@@ -30,7 +30,7 @@ class CategoryResponse(CategoryBase):
     subcategories: Optional[List["CategoryResponse"]] = None
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class CategoryWithMedicineCount(CategoryResponse):

@@ -72,7 +72,7 @@ class MedicineResponse(MedicineBase):
     updated_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class MedicineSearchQuery(BaseModel):
