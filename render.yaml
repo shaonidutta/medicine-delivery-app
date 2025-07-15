@@ -5,14 +5,19 @@ services:
     buildCommand: |
       cd backend
       python --version
-      pip install --upgrade pip
-      pip install -r requirements.txt
+      pip install --upgrade pip setuptools wheel
+      export CRYPTOGRAPHY_DONT_BUILD_RUST=1
+      pip install --only-binary=cryptography,bcrypt,cffi --prefer-binary -r requirements.txt
       alembic upgrade head
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     plan: free
     healthCheckPath: /health
     runtime: python311
     envVars:
+      - key: CRYPTOGRAPHY_DONT_BUILD_RUST
+        value: "1"
+      - key: PIP_ONLY_BINARY
+        value: "cryptography,bcrypt,cffi"
       - key: DATABASE_URL
         value: sqlite:///./quick_commerce_medicine.db
       - key: SECRET_KEY
