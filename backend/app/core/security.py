@@ -4,13 +4,14 @@ Security utilities for authentication and authorization
 
 from datetime import datetime, timedelta
 from typing import Any, Union, Optional
-from jose import jwt, JWTError
+import jwt
+from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from fastapi import HTTPException, status
 from app.core.config import settings
 
-# Password hashing context
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Password hashing context (using pbkdf2_sha256 - pure Python, no bcrypt)
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 ALGORITHM = "HS256"
 
@@ -47,7 +48,7 @@ def verify_token(token: str) -> Optional[str]:
         if user_id is None:
             return None
         return user_id
-    except JWTError:
+    except InvalidTokenError:
         return None
 
 

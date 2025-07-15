@@ -7,7 +7,8 @@ services:
       python --version
       pip install --upgrade pip setuptools wheel
       export CRYPTOGRAPHY_DONT_BUILD_RUST=1
-      pip install --only-binary=cryptography,bcrypt,cffi --prefer-binary -r requirements.txt
+      export CARGO_NET_OFFLINE=true
+      pip install --only-binary=:all: --prefer-binary -r requirements.txt
       alembic upgrade head
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     plan: free
