@@ -2,7 +2,7 @@
 User Pydantic schemas
 """
 
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
 from typing import Optional, List, Dict, Any
 from datetime import date, datetime
 import re
@@ -38,7 +38,7 @@ class UserCreate(BaseModel):
     emergency_contact: Optional[EmergencyContact] = None
     delivery_addresses: Optional[List[DeliveryAddress]] = None
 
-    @validator('password')
+    @field_validator('password')
     @classmethod
     def validate_password(cls, v):
         if len(v) < 8:
@@ -53,7 +53,7 @@ class UserCreate(BaseModel):
             raise ValueError('Password must contain at least one special character')
         return v
 
-    @validator('phone')
+    @field_validator('phone')
     @classmethod
     def validate_phone(cls, v):
         try:
@@ -67,7 +67,7 @@ class UserCreate(BaseModel):
         except phonenumbers.NumberParseException:
             raise ValueError('Invalid phone number format')
 
-    @validator('date_of_birth')
+    @field_validator('date_of_birth')
     @classmethod
     def validate_date_of_birth(cls, v):
         if v and v >= date.today():
@@ -89,7 +89,7 @@ class UserUpdate(BaseModel):
     emergency_contact: Optional[EmergencyContact] = None
     delivery_addresses: Optional[List[DeliveryAddress]] = None
 
-    @validator('date_of_birth')
+    @field_validator('date_of_birth')
     @classmethod
     def validate_date_of_birth(cls, v):
         if v and v >= date.today():
@@ -112,7 +112,7 @@ class UserResponse(BaseModel):
     created_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class PhoneVerification(BaseModel):

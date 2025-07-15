@@ -1,19 +1,24 @@
 
-# Core FastAPI dependencies (Python 3.11 compatible)
-fastapi==0.95.2
-uvicorn==0.22.0
+# Core FastAPI dependencies (Python 3.13 compatible)
+fastapi==0.115.6
+uvicorn==0.32.1
 
 # Database
-sqlalchemy==1.4.48
+sqlalchemy==2.0.23
+alembic==1.12.1
 
 # Authentication and Security
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
 
-# Validation (using Pydantic v1 for stability)
-pydantic==1.10.12
+# Validation (Pydantic v2 for Python 3.13)
+pydantic==2.10.4
+pydantic-settings==2.10.1
 
 # Environment Variables
 python-dotenv==1.0.0
+
+# Additional dependencies
+phonenumbers==8.13.27
 
