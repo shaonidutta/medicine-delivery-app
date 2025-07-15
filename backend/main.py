@@ -2,34 +2,27 @@
 Production entry point for Render deployment
 """
 
-import uvicorn
-import os
+# Import the FastAPI app directly so Render can find it
+from app.main import app
 
-def main():
-    """Main entry point"""
-    try:
-        from app.main import app
-        print("✅ App imported successfully!")
-        print(f"App title: {app.title}")
-
-        port = int(os.environ.get("PORT", 8000))
-        host = "0.0.0.0"
-
-        print(f"🚀 Starting server on {host}:{port}")
-        print(f"📚 API Documentation: http://localhost:{port}/docs")
-        print(f"🏥 Health Check: http://localhost:{port}/health")
-
-        uvicorn.run(
-            app,
-            host=host,
-            port=port,
-            log_level="info"
-        )
-    except Exception as e:
-        print(f"❌ Error starting server: {e}")
-        import traceback
-        traceback.print_exc()
-        raise
+# This makes the app available as main:app for uvicorn
+__all__ = ["app"]
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+    import os
+
+    port = int(os.environ.get("PORT", 8000))
+    host = "0.0.0.0"
+
+    print("🚀 Starting Quick Commerce Medicine Delivery API...")
+    print(f"📍 Server: {host}:{port}")
+    print(f"📚 API Docs: http://localhost:{port}/docs")
+    print(f"🏥 Health: http://localhost:{port}/health")
+
+    uvicorn.run(
+        app,
+        host=host,
+        port=port,
+        log_level="info"
+    )
