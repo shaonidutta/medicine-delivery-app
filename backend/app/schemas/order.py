@@ -69,7 +69,7 @@ class OrderItemResponse(OrderItemBase):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class OrderBase(BaseModel):
@@ -113,7 +113,7 @@ class OrderResponse(OrderBase):
     updated_at: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class OrderSearchQuery(BaseModel):

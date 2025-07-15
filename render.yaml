@@ -11,9 +11,8 @@ services:
     startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     plan: free
     healthCheckPath: /health
+    runtime: python311
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.6
       - key: DATABASE_URL
         value: sqlite:///./quick_commerce_medicine.db
       - key: SECRET_KEY
